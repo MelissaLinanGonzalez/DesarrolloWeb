@@ -1,43 +1,53 @@
-<!--Crea tu currículum, mediante CSS crea las diferentes áreas del currículum, en la parte superior pon una cabecera que te parezca apropiada, debajo de la cabecera hay 3 secciones, a la izquierda una imagen (no tiene que ser tuya, puedes utilizar cualquier imagen que te descargues de internet) y los datos de la persona (os podéis inventar los datos), utiliza una lista no ordenada para la información (nombre, apellidos, dirección, teléfono, correo electrónico), en la parte central la experiencia laboral y a la derecha la formación académica, dale al fondo de la pagina un color o utiliza una imagen para darle fondo.-->
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>CV</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="contenedor">
         <div class="cabecera">
-            <h1>Desarrollador Full Stack</h1>
+            <h1>María Antonia Pérez García</h1>
+            <h2>Desarrolladora Full Stack</h2>
         </div>
         <div class="izquierda">
             <img src="sources/imagen.png" alt="imagen">
             <ul>
-                <li>María Antonia</li>
-                <li>Pérez García</li>
-                <li>Calle Falsa nº123</li>
-                <li>668789456</li>
-                <li>maria.perez@ejemplo.com</li>
+                <li><strong>Dirección:</strong> Calle La Paz 54</li>
+                <li><strong>Teléfono:</strong> 668789456</li>
+                <li><strong>Email:</strong> maria.perez@gmail.com</li>
             </ul>
         </div>
         <div class="centro">
-            <div>
-                <h1>Experiencia Laboral</h1>
-            </div>
+            <h1>Experiencia Laboral</h1>
             <div class="exp">
                 <div>
-                    <p class="centro">SIEMENS s.l</p>
-                    <p class="descripcion">Programador de autómatas | 2018-2020</p>
+                    <h3>SIEMENS s.l</h3>
+                    <p class="descripcion">Programadora de autómatas | 2018-2020</p>
                 </div>
-                <div></div>
-                <div></div>
+                <div>
+                    <h3>Telefónica s.a</h3>
+                    <p class="descripcion">Desarrolladora Web | 2020-2022</p>
+                </div>
+                <div>
+                    <h3>Indra s.a</h3>
+                    <p class="descripcion">Analista Programadora | 2022-Actualidad</p>
+                </div>
             </div>
         </div>
-        <div class="derecha">Formación</div>
+        <div class="derecha">
+            <h1>Formación Académica</h1>
+            <div>
+                <h3>Salesiano San Luis Rey</h3>
+                <p>Técnico Superior en Automatización y Robótica Industrial | 2016-2018</p>
+            </div>
+            <div>
+                <h3>IES Antonio Gala</h3>
+                <p>Técnico SUperior en Desarrollo de Aplicaciones Multiplataformas | 2018-2022</p>
+            </div>
+        </div>
     </div>
-    
 </body>
 </html>
