@@ -1,5 +1,7 @@
 function crearTabla() {
     const tabla = document.querySelector('#tabla');
+    const estilo = "color: blue; font-size: 12pt;";
+    tabla.setAttribute('style', estilo);
     tabla.innerHTML = `
         <tr>
             <td>Palma del Río</td>
@@ -8,5 +10,5 @@ function crearTabla() {
             <td>Córdoba</td>
         </tr>
     `
-    
+
 }
