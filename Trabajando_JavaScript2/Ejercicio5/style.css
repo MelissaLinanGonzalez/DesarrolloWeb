@@ -1,0 +1,22 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(17, 40px); /* 17 columnas x ~15 filas = 255 */
+    gap: 4px;
+}
+
+/* estilo visible para cada caja */
+.color-box {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #222;
+    box-sizing: border-box;
+    transition: transform 0.12s;
+}
