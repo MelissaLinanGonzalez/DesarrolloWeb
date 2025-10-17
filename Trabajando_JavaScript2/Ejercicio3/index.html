@@ -1,0 +1,20 @@
+<!-- Modificar el ejercicio anterior y añadir un botón que sirva para poder borrar todos los
+ contenidos de los cuadros de texto de golpe. Usad un bucle y la función getElementsByTagName()-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Ejercicio 3</title>
+</head>
+<body>
+    <h1>Ejercicio 3</h1>
+    <input type="text" id="text1" onfocus="enfoque(this)" onblur="desenfoque(this)">
+    <input type="text" id="text2" onfocus="enfoque(this)" onblur="desenfoque(this)">
+    <input type="text" id="text3" onfocus="enfoque(this)" onblur="desenfoque(this)">
+    <input type="text" id="text4" onfocus="enfoque(this)" onblur="desenfoque(this)">
+    <button onclick="borrar()">Borrar todo</button>
+    <script src="script.js"></script>
+</body>
+</html>
