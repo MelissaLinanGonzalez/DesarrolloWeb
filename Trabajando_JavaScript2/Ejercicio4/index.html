@@ -1,3 +1,7 @@
+<!-- Crear una web que tenga cuatro divs y un cuadro de lista desplegable que tenga las siguientes opciones
+red, blue, green, lightgrey. Codificar una función que para el evento onchange del cuadro de lista
+cambie el color de fondo de los divs-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +11,44 @@
 </head>
 <body>
 
-    <h1>Ejercicio 3</h1>
+    <h1>Ejercicio 4</h1>
+    <div id="div1">
+        <p>Seleccione un color para el div</p>
+        <select onchange="cambiarColor('div1', this.value)">
+            <option value="red">Red</option>
+            <option value="blue">Blue</option>
+            <option value="green">Green</option>
+            <option value="lightgrey">Lightgrey</option>
+        </select>
+    </div>
+    <div id="div2">
+        <p>Seleccione un color para el div</p>
+        <select onchange="cambiarColor('div2', this.value)">
+            <option value="red">Red</option>
+            <option value="blue">Blue</option>
+            <option value="green">Green</option>
+            <option value="lightgrey">Lightgrey</option>
+        </select>
+    </div>
+    <div id="div3">
+        <p>Seleccione un color para el div</p>
+        <select onchange="cambiarColor('div3', this.value)">
+            <option value="red">Red</option>
+            <option value="blue">Blue</option>
+            <option value="green">Green</option>
+            <option value="lightgrey">Lightgrey</option>
+        </select>
+    </div>
+    <div id="div4">
+        <p>Seleccione un color para el div</p>
+        <select onchange="cambiarColor('div4', this.value)">
+            <option value="red">Red</option>
+            <option value="blue">Blue</option>
+            <option value="green">Green</option>
+            <option value="lightgrey">Lightgrey</option>
+        </select>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
