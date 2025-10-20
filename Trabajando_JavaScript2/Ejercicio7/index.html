@@ -1,0 +1,19 @@
+<!--Crear una web que tenga un cuadro de texto y en su evento onchange cree una tabla mediante un bucle
+con una columna y en las filas insertamos los números pares existentes entre 0 y el valor introducido
+en el cuadro de texto-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 7</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Ejercicio 7</h1>
+    <input type="text" placeholder="Ingresa un número" id="numero" onchange="crearTablaNumerosPares()">
+    <p>Cuando introduzcas un número, se creará una tabla de una sola columna con tantas filas como números pares haya entre el 0 y el número introducido</p>
+    <div id="contenedor"></div>
+    <script src="script.js"></script>
+</body>
+</html>
