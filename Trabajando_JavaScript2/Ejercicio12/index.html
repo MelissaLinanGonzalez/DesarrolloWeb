@@ -1,0 +1,17 @@
+<!--Crear un documento html con 3 imágenes y mediante javascript controlar el evento onmouseover sobre cada imagen para que
+le ponga los bordes redondeados a la imagen sobre la cual estamos pasando-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 12</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Ejercicio 12</h1>
+    <img src="images/img1.jpg" onmouseover="redondearBordes(this)" onmouseout="encuadrarBordes(this)" id="img1">
+    <img src="images/img2.jpg" onmouseover="redondearBordes(this)" onmouseout="encuadrarBordes(this)" id="img2">
+    <script src="script.js"></script>
+</body>
+</html>
