@@ -5,3 +5,13 @@ body{
     flex-direction: column;
     margin: 20px;
 }
+
+.contador{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(46, 57, 53, 0.42);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
