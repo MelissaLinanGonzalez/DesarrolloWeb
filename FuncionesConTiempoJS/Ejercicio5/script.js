@@ -1,32 +1,38 @@
 let contador = 0;
 let intervalo;
+let img = document.querySelector("img");
+let posX = 0;
+let velocidad = 2;
+
+function animar(){
+    posX += velocidad;
+    img.style.left = posX + "px";
+
+    if (posX > window.innerWidth - img.offsetWidth || posX < 0) {
+        velocidad *= -1;
+    }
+
+    requestAnimationFrame(animar);
+}
+
 
 function iniciar() {
     intervalo = setInterval(mostrarGif, 1000);
+    animar(); // solo iniciar la animación una vez
 }
 
 
 function mostrarGif(){
     contador++;
     document.getElementById("contador").textContent = contador + " segundos";
-    const imagen = document.getElementById('miImagen');
-    let posicionActual = 0;
-    const intervalo = setInterval(() => {
-        posicionActual += 10; // Mueve 5 píxeles cada intervalo
-        imagen.style.left = posicionActual + 'px';
-        // Detener la animación cuando llega a un cierto punto (opcional)
-        if (posicionActual >= 500) {
-            clearInterval(intervalo);
-        }
-    }, 100);
 
-    if (contador === 5) {
-        clearInterval(intervalo); // Detenemos el intervalo
-        crearTabla2();
-    }
+    // if (contador === 5) {
+    //     clearInterval(intervalo); // Detenemos el intervalo
+    //     crearTabla();
+    // }
 }
 
-function crearTabla2() {
+function crearTabla() {
     const filas = 5;
     const columnas = 5;
     let contenedor = document.getElementById("contenido");
@@ -52,6 +58,3 @@ function crearTabla2() {
 
     contenedor.appendChild(tabla);
 }
-
-
-

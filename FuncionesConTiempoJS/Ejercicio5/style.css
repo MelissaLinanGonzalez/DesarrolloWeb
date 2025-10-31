@@ -15,3 +15,8 @@ body{
     padding: 10px;
     border-radius: 10px;
 }
+
+#miImagen {
+    position: absolute;
+    left: 0;
+}
