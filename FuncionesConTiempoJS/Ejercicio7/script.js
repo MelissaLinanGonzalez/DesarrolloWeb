@@ -34,6 +34,8 @@ Esto no afecta al contenido existende del crono, es decir, no afecta a las horas
 function parar(){
     clearInterval(semaforo);
     semaforo="";
+    let tiempos = horas + "h: " + minutos + "m: " + segundos + "s";
+    document.getElementById("tiempos").innerHTML += tiempos + "<br>";
 }
 
 function resetear(){
