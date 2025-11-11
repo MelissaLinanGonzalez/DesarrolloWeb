@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 6</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Ejercicio 6</h1>
+    <p>Define un objeto constructo que sea un cliente, este cliente tiene un nombre y un saldo bancario (variables privadas),
+    crea los métodos ingreso, retirada y consultar para añadir, retirar o consular el estado de las cuentas.</p>
+
+    <input type="text" id="nombre" placeholder="Ingresa el nombre">
+    <input type="text" id="saldo" placeholder="Ingresa el saldo inicial">
+    <input type="number" id="cantidad" placeholder="Ingresa cantidad para realizar la operación deseada">
+    <button onclick="guardarCliente()">Guardar Cliente</button>
+    <button onclick="realizarIngreso()">Ingreso</button>
+    <button onclick="realizarRetirada()">Retirada</button>
+    <button onclick="consultarSaldo()">Consultar Saldo</button>
+
+    <div id="resultado"></div>
+    <script src="script.js"></script>
+</body>
+</html>
