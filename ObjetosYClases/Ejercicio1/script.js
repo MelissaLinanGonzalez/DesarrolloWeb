@@ -4,7 +4,7 @@ function Alumno(nombre, calificaciones){
     this.notaMedia = function(){
         let suma = 0;
         let total = 0;
-        for (asignatura in this.calificaciones){
+        for (let asignatura in this.calificaciones){
             suma += this.calificaciones[asignatura];
             total++;
         }
