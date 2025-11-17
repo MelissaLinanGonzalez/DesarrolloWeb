@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 9</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="mostrarElementos()">
+    <h1>Ejercicio 9</h1>
+    <p>Crea un array que almacene varios elementos de la clase compra, la clase tendrá un array de string con los productos
+    que tiene que comprar, fecha que contiene el día que se realizará la compra y un array que contenga el número de unidades
+    de cada elemento de la lista de compra. En la vista HTML se tiene que poder ver cuántos elementos compra tiene el array
+    y poder visualizar uno a elección del usuario</p>
+    <input type="text" id="elemento" placeholder="Introduce la compra que desea visualizar">
+    <button onclick="buscarCompra()">Buscar compra</button> <span>Introduce el número del 1 al máximo de compras</span>
+    <div id="elementos"></div>
+    <div id="elementosBuscado"></div>
+    <script src="producto.js"></script>
+    <script src="compra.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
