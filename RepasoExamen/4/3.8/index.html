@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 8</title>
+</head>
+<body>
+    <h1>Ejercicio 8</h1>
+    <p>Crea una clase que llamaremos Bus. Sus atributos serán:</p>
+    <ul>
+        <li>Capacidad: número máximo de pasajeros</li>
+        <li>Pasajeros: número de pasajeors (inicialmente 0)</li>
+        <li>Consuctor: objeto Conductos</li>
+    </ul>
+    <p>Sus métodos</p>
+    <ul>
+        <li>Subir (pasajeros): aumenta el número de pasajeros</li>
+        <li>Bajar (pasajeros): disminuye el número de pasajeros</li>
+        <li>Conducto: asigna un objeto conductor</li>
+    </ul>
+    <p>El objeto conductor es de una clase (Conductor) cuyos atributos son:</p>
+    <ul>
+        <li>Nombre: nombre del conductor</li>
+        <li>Licencia: un número que identifica al conductor</li>
+    </ul>
+    <p>Al crear el objeto se asigna también el conductor. No pueden subir más pasajeros que los máximos admitidos y no pueden bajar más de los que hay.</p>
+
+    <input type="text" id="nombreConductor" placeholder="Introduce el nombre del conductor">
+    <input type="text" id="licenciaConductor" placeholder="Introduce la licencia del conductor">
+    <button onclick="crearConcutor()">Crear conducto</button>
+    <input type="text" id="capacidad" placeholder="Introduce la capacidad máxima del autobús">
+    <button onclick="crearAutobus()">Crear autobús</button>
+    <input type="text" id="pasajeros" placeholder="Introduce los pasajeros"><span>Para subir / bajar</span>
+    <button onclick="subirPasajero()">Subir pasajeros</button>
+    <button onclick="bajarPasajero()">Bajar pasajeros</button>
+    <div id="contenido"></div>
+
+    <script src="autobus.js"></script>
+    <script src="conductor.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
