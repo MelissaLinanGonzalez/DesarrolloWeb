@@ -1,0 +1,31 @@
+/* Estilos generales de la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Estilos específicos según el tipo de dato */
+.tipo-numero {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.tipo-texto {
+    background-color: #d4edda;
+    color: #155724;
+    font-style: italic;
+}
+
+.tipo-otro {
+    background-color: #fff3cd;
+    color: #856404;
+}

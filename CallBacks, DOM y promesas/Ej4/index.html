@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Ejercicio 4</title>
+</head>
+<body>
+    <h1>Ejercicio 4</h1>
+    <p>Crea un script que mediante callback puedas realizar la  suma, resta, multiplicación y división. El resultado
+        y la operación deben almacenarse en una tabla. Crea las entradas necesarias para comprobar que funciona.
+    </p>
+    <input type="number" id="num1" placeholder="Número 1">
+    <input type="number" id="num2" placeholder="Número 2">
+    <select id="operacion">
+        <option value="sumar">Sumar</option>
+        <option value="restar">Restar</option>
+        <option value="multiplicar">Multiplicar</option>
+        <option value="dividir">Dividir</option>
+    </select>
+    <button onclick="llamarCallback()">Calcular</button>
+    <div id="resultado">
+        <table id="tabla">
+    <thead>
+        <tr>
+            <th>Número 1</th>
+            <th>Número 2</th>
+            <th>Operación</th>
+            <th>Resultado</th>
+        </tr>
+    </thead>
+    <tbody id="cuerpo-tabla">
+        </tbody>
+</table>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
