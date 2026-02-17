@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 6</title>
+    <style>
+        /* 1. ESTILOS BASE (Por defecto) */
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            background-color: #f0f0f0; 
+            color: #333; 
+        }
+        
+        /* Tema Oscuro */
+        body.oscuro {
+            background-color: #222;
+            color: white;
+        }
+
+        /* Tema Azul */
+        body.azul {
+            background-color: #003366;
+            color: #add8e6; 
+        }
+
+        /* Tema Retro */
+        body.retro {
+            background-color: #f4e4bc; 
+            color: #5c4b51; 
+            font-family: 'Courier New', Courier, monospace; 
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ejercicio 6</h1>
+    <p>Crea una página que tenga varios estilos, y que con algún elemento puedas cambiar dichos estilos, el tema o estilo se debe
+        guardar en memoria local y cuando se inicie la página tiene que leer dicha información y mostrar la página con la configuración 
+        seleccionada.
+    </p>
+
+    <p>Selecciona un botón para cambiar el aspecto de la página</p>
+
+    <button onclick="cambiarTema('')">Original</button>
+    <button onclick="cambiarTema('oscuro')" style="background:#333; color:white">Oscuro</button>
+    <button onclick="cambiarTema('azul')" style="background:#003366; color:white">Azul</button>
+    <button onclick="cambiarTema('retro')" style="background:#f4e4bc; color:black">Retro</button>
+
+    <script>
+        const temaGuardado = localStorage.getItem("miTema");
+
+        if(temaGuardado){
+            document.body.className = temaGuardado;
+        }
+
+        function cambiarTema(tema){
+            document.body.className = tema;
+
+            localStorage.setItem("miTema", tema);
+        }
+    </script>
+</body>
+</html>

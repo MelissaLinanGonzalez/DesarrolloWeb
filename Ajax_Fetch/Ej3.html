@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+</head>
+<body>
+    <h1>Ejercicio 3</h1>
+    <p>Modifica el ejercicio anterior para que cada elemento tenga una opción de borrar, guarda
+        esta información en el almacenamiento local con los elementos que no se han borrado. Añade
+        una opción para volver a cargar los datos del fichero y otra para borrar todo el almacenamiento local.
+    </p>
+
+    <button onclick="cargarFichero()">Cargar Fichero</button>
+    <button onclick="guardarEnLocal()">2. Guardar lista actual en LocalStorage</button>
+    <button onclick="verLocal()">3. Ver guardados en LocalStorage</button>
+    <button onclick="borrarLocal()">X. Borrar LocalStorage</button>
+
+    <p id="demo"></p>
+
+    <script>
+
+        let datos = [];
+
+        async function cargarFichero() {
+            try{
+
+                const respuesta = await fetch("catalogo.xml");
+                const datosTexto = await respuesta.text();
+
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(datosTexto, "text/xml");
+
+                const cds = xmlDoc.getElementsByTagName("CD");
+                
+                datos = [];
+
+                for(let i = 0; i < cds.length; i++){
+                    let anio = cds[i].getElementsByTagName("YEAR")[0].textContent;
+                    if(Number(anio) >= 1990){
+                        let nuevoCD = {
+                            titulo: cds[i].getElementsByTagName("TITLE")[0].textContent,
+                            artista: cds[i].getElementsByTagName("ARTIST")[0].textContent,
+                            anio: anio
+                        };
+
+                        datos.push(nuevoCD);
+                        
+                    }
+                }
+
+                mostrarLista();
+
+            } catch{
+                console.error("Error al cargar el XML:", error);
+                document.getElementById("demo").innerHTML = "Error al cargar el archivo.";
+            }
+        }
+
+        function mostrarLista(){
+            let texto = "";
+
+            datos.forEach((cd, indice) =>{
+                texto += `<b>${cd.titulo}</b> - ${cd.artista} || ${cd.anio}`;
+                texto += `<button onclick="borrarElemento(${indice})">Borrar elemento</button>`;
+                texto += "<br><br>";
+            } );
+
+            if(datos.length === 0){
+                texto = "La lista está vacía";
+            }
+
+            document.getElementById("demo").innerHTML = texto;
+        }
+
+        function borrarElemento(indice){
+            datos.splice(indice,1);
+            mostrarLista();
+        }
+
+        function guardarEnLocal(){
+            localStorage.setItem("misDiscosGuardados", JSON.stringify(datos));
+        }
+
+        function verLocal(){
+            let guardados = localStorage.getItem("misDiscosGuardados");
+
+            if (guardados) {
+                datos = JSON.parse(guardados);
+                mostrarLista();
+            } else {
+                document.getElementById("demo").innerHTML = "No hay nada guardado en el LocalStorage.";
+            }
+        }
+
+        function borrarLocal() {
+            localStorage.removeItem("misDiscosGuardados");
+            alert("LocalStorage vaciado.");
+            document.getElementById("demo").innerHTML = "";
+            datos = [];
+        }
+    </script>
+</body>
+</html>

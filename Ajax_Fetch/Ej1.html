@@ -1,0 +1,44 @@
+<!---1. Modifica el ejemplo ajax3 para utilizar la función fetch() en vez de HttpRequest. Muestra los mismo valores por pantalla-->
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Cargamos un fichero XML</h2>
+<button onclick="cargarFichero()">Cargar fichero</button>
+
+<p id="demo"></p>
+ 
+<script>
+    async function cargarFichero(){
+        try{
+
+            const respuesta = await fetch("catalogo.xml");
+            const datosTexto = await respuesta.text();
+
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(datosTexto, "text/xml");
+
+            const artistas = xmlDoc.getElementsByTagName("ARTIST");
+
+            let texto = "";
+
+            for(let i = 0; i < artistas.length; i++){
+                if(artistas[i].childNodes[0]){
+                    texto += artistas[i].childNodes[0].nodeValue + "<br>";
+                }
+            }
+
+            document.getElementById("demo").innerHTML = texto;
+            
+        } catch{
+            console.error("Error al cargar el XML:", error);
+            document.getElementById("demo").innerHTML = "Error al cargar el archivo.";
+        }
+
+    }
+    
+</script>
+
+</body>
+</html>

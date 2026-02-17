@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+    <h1>Ejercicio 2</h1>
+    <p>Cargar el archivo catalogo.xml y muestra el título del CD, el artista
+    y el año de todos aquellos CDs que salieron a partir del año 1990</p>
+    <button onclick="cargarFichero()">Cargar Fichero</button>
+    <p id="demo"></p>
+
+    <script>
+        async function cargarFichero() {
+            try{
+
+                const respuesta = await fetch("catalogo.xml");
+                const datosTexto = await respuesta.text();
+
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(datosTexto, "text/xml");
+
+                const cds = xmlDoc.getElementsByTagName("CD");
+                
+                let texto = "";
+                for(let i = 0; i < cds.length; i++){
+                    let anio = cds[i].getElementsByTagName("YEAR")[0].textContent;
+                    if(Number(anio) >= 1990){
+                        let titulo =  cds[i].getElementsByTagName("TITLE")[0].textContent;
+                        let artista =  cds[i].getElementsByTagName("ARTIST")[0].textContent;
+                        texto += `Título: ${titulo}; || Artista: ${artista}`;
+                        texto += "<br>";
+                        
+                    }
+                }
+
+                document.getElementById("demo").innerHTML = texto;
+
+            } catch{
+                console.error("Error al cargar el XML:", error);
+                document.getElementById("demo").innerHTML = "Error al cargar el archivo.";
+            }
+        }
+    </script>
+    
+</body>
+</html>
