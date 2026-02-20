@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+</head>
+<body>
+    <h1>Ejercicio 1</h1>
+    <p>Utilizando catalogo.xml, muestra todos aquellos CDs cuya nacionalidad sea
+        UK. Una vez se muestre los elementos, se debe poder borrar aquellos CDs que
+        queramos, cada CD tiene que tener un  botón correspondiente para borrarlo.
+        Además, se debe de poder introducir CD, los datos que tiene que introducir
+        usuario son: el título, artista, compañía, precio y año, la nacionalidad 
+        es UK. Cada CD tiene que ser un elemento independiente.
+    </p>
+    <button onclick="cargar()">Cargar CDs de nacionalidad UK</button>
+
+    <div style="background-color: #eee; padding: 10px; margin-bottom: 20px;">
+        <h3>Añadir Nuevo CD</h3>
+        <input type="text" id="titulo" placeholder="Título">
+        <input type="text" id="artista" placeholder="Artista">
+        <input type="text" id="compania" placeholder="Compañía">
+        <input type="number" id="precio" placeholder="Precio">
+        <input type="number" id="anio" placeholder="Año">
+        <button onclick="agregarCD()">Añadir CD (UK)</button>
+    </div>
+
+    <p id="demo"></p>
+
+    <script>
+        datos = [];
+        async function cargar() {
+            const respuesta = await fetch("catalogo.xml");
+            const datosTexto = await respuesta.text();
+
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(datosTexto, "text/xml");
+
+            const cds = xmlDoc.getElementsByTagName("CD");
+
+            
+
+            for(let i = 0; i < cds.length; i++){
+                let nationality = cds[i].getElementsByTagName("COUNTRY")[0].textContent;
+                if(nationality === "UK"){
+                    let nuevoCD = {
+                        titulo: cds[i].getElementsByTagName("TITLE")[0].textContent,
+                        artista: cds[i].getElementsByTagName("ARTIST")[0].textContent,
+                        pais: nationality,
+                        compania: cds[i].getElementsByTagName("COMPANY")[0].textContent,
+                        precio: cds[i].getElementsByTagName("PRICE")[0].textContent,
+                        anio: cds[i].getElementsByTagName("YEAR")[0].textContent,
+                    }
+                    datos.push(nuevoCD);
+                }
+                
+            }
+
+            mostrarLista();
+        }
+
+        function mostrarLista(){
+            let texto = "";
+
+            datos.forEach((cd, indice) => {
+                texto += `<b>${cd.titulo}</b> - ${cd.artista} || ${cd.pais} || ${cd.compania} || ${cd.compania} || ${cd.precio} || ${cd.anio} `;
+                texto += `<button onclick="borrarElemento(${indice})">Borrar elemento</button>`;
+                texto += "<br><br>";
+            });
+
+            if(datos.length === 0){
+                texto = "La lista está vacía";
+            }
+
+            document.getElementById("demo").innerHTML = texto;
+        }
+
+        function borrarElemento(indice){
+            datos.splice(indice,1);
+            mostrarLista();
+        }
+
+        function agregarCD(){
+            let nuevoCD = {
+            titulo: document.getElementById("titulo").value,
+            artista: document.getElementById("artista").value,
+            pais: "UK",
+            compania: document.getElementById("compania").value,
+            precio: document.getElementById("precio").value,
+            anio: document.getElementById("anio").value
+            }
+
+            datos.push(nuevoCD);
+
+            mostrarLista();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+    <h1>Ejercicio 2</h1>
+    <p>Crea un script que cargue el fichero productos.xml, después crea un 
+        filtro para que cuando se selecione el filtro correspondiente, aparezcan
+        solamente los productos de esa categoría.
+    </p>
+
+    <select id="filtroCategoria" onchange="mostrarLista()">
+        <option value="todos">Mostrar Todos</option>
+    </select>
+
+    <button onclick="cargarProductos()">Mostrar todos los productos</button>
+    <p id="demo"></p>
+
+    <script>
+    
+        let productos = []; 
+
+        async function cargarProductos(){
+            const respuesta = await fetch("productos.xml");
+            const datosTexto = await respuesta.text();
+
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(datosTexto, "text/xml");
+
+            const productosDatos = xmlDoc.getElementsByTagName("producto");
+
+            productos = [];
+            
+            for(let i = 0; i < productosDatos.length; i++){
+                let nuevoProducto = {
+                    nombre: productosDatos[i].getElementsByTagName("nombre")[0].textContent,
+                    categoria: productosDatos[i].getElementsByTagName("categoria")[0].textContent,
+                    precio: productosDatos[i].getElementsByTagName("precio")[0].textContent
+                }
+                productos.push(nuevoProducto);
+            }
+
+            mostrarLista();
+        }
+
+        function mostrarLista(){
+            let texto = "";
+            let categoriaCargada = document.getElementById("filtroCategoria").value;
+
+            productos.forEach(producto => {
+                if(producto.categoria === categoriaCargada){
+                    texto += `${producto.nombre} || Categoría: ${producto.categoria} || Precio: ${producto.precio}`;
+                    texto += "<br><br>"
+                } else if(categoriaCargada === "todos"){
+                    texto += `${producto.nombre} || Categoría: ${producto.categoria} || Precio: ${producto.precio}`;
+                    texto += "<br><br>"
+                }
+            });
+
+            document.getElementById("demo").innerHTML = texto;
+        }
+
+        async function cargarCategoriasSelect() {
+            try {
+                const respuesta = await fetch("productos.xml");
+                const datosTexto = await respuesta.text();
+                const xmlDoc = new DOMParser().parseFromString(datosTexto, "text/xml");
+
+                const productosDatos = xmlDoc.getElementsByTagName("producto");
+                const miSelect = document.getElementById("filtroCategoria");
+
+        
+                let categoriasAñadidas = [];
+
+                for(let i = 0; i < productosDatos.length; i++) {
+                    let categoria = productosDatos[i].getElementsByTagName("categoria")[0].textContent;
+
+                    // Comprobamos si la categoría ya está en nuestro array
+                    // Si NO está (!), la añadimos
+                    if (!categoriasAñadidas.includes(categoria)) {
+                        
+                        // 1. La guardamos en el array para no repetirla en el futuro
+                        categoriasAñadidas.push(categoria);
+
+                        // 2. Creamos el elemento <option>
+                        let nuevaOpcion = document.createElement("option");
+                        
+                        // 3. Le damos el valor y el texto que mostrará
+                        nuevaOpcion.value = categoria; 
+                        nuevaOpcion.textContent = categoria; 
+
+                        // 4. Lo enganchamos a nuestro <select> del HTML
+                        miSelect.appendChild(nuevaOpcion);
+                    }
+                }
+            } catch (error) {
+                console.error("Error al cargar las categorías:", error);
+            }
+        }
+
+        cargarCategoriasSelect();
+    </script>
+</body>
+</html>

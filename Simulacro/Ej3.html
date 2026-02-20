@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+</head>
+<body>
+    <h1>Ejercicio 3</h1>
+    <p>Crea un script que cargue el fichero coche.json, crea un filtro para
+        filtrar los coches por país de origen.
+    </p>
+    <select id="filtroPais" onchange="mostrar()">
+        <option value="todos">Mostrar Todos</option>
+    </select>
+
+    <button onclick="mostrar()">Mostrar</button>
+    <p id="demo"></p>
+
+    <script>
+        let coches = [];
+
+        async function mostrar() {
+            const respuesta = await fetch("coche.json");
+            const datos = await respuesta.text();
+
+            const obj = JSON.parse(datos);
+            coches = obj; 
+
+            let paisSeleccionado = document.getElementById("filtroPais").value;
+            
+            let texto = "";
+
+            coches.forEach(coche => {
+            
+                if (paisSeleccionado === "todos" || coche.lugar_origen === paisSeleccionado) {
+                    texto += `<b>Marca:</b> ${coche.marca} || <b>Año:</b> ${coche.anio_fundacion} || <b>Origen:</b> ${coche.lugar_origen}`;
+                    texto += "<br><br>";
+                }
+            });
+
+            if (texto === "") {
+                texto = "No hay coches para mostrar.";
+            }
+            document.getElementById("demo").innerHTML = texto;
+        }
+
+        async function cargarCategoriasSelect(){
+            try {
+                const respuesta = await fetch("coche.json");
+                const datos = await respuesta.text();
+
+                const obj = JSON.parse(datos);
+                const miSelect = document.getElementById("filtroPais");
+
+                let listaCategorias = [];
+
+                for(let i = 0; i < obj.length; i++){
+                    let categoria = obj[i].lugar_origen;
+
+                    if(!listaCategorias.includes(categoria)){
+                        listaCategorias.push(categoria);
+
+                        let nuevaOpcion = document.createElement("option");
+
+                        nuevaOpcion.value = categoria;
+                        nuevaOpcion.textContent = categoria;
+
+                        miSelect.appendChild(nuevaOpcion);
+                    }
+                }
+            } catch (error) {
+                console.error("Error al cargar categorías:", error);
+            }
+        }
+
+        // Llamamos a las dos funciones al inicio para que se cargue todo solo
+        cargarCategoriasSelect();
+        mostrar(); 
+    </script>
+</body>
+</html>
