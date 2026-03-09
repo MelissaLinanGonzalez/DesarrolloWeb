@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4</title>
+</head>
+<body>
+    <h1>Ejercicio 4</h1>
+    <p>Crea un script que contenga un objeto de un tipo que defina el alumno (puede ser productos, alimentos, alumnos, personas...)
+        después muestra dichos elementros por pantalla, los elementos que introduzcamos deben de almacenarse en memoria local. También
+        tenemos que tener la opción de poder borrar un elemento en específico, cuando se borre el elemento hay que actualizar la memoria
+        local para que dicho elemento se borre. También tienes que introducir una opción para editar los campos, una vez editados debes 
+        actualizar los datos existentes en la memoria local.
+    </p>
+
+    <div class="formulario">
+        <input type="text" id="inTitulo" placeholder="Título del juego">
+        <input type="text" id="inGenero" placeholder="Género">
+        <input type="number" id="inAnio" placeholder="Año de salida">
+        
+        <button id="btnGuardar" onclick="guardarElemento()">Añadir Videojuego</button>
+    </div>
+    <h3>Lista de Juegos:</h3>
+    <div id="resultados"></div>
+    <script>
+        // Variable global
+        let videojuegos = [];
+
+        // Variable que nos indica si estamos añadiendo o modificando
+        let indiceEdicion = -1;
+        // Si = -1 significa que es un juego nuevo
+        // Si tiene cualquier otro valor, significa que estamos editando un juego y esa es la posición en la que se encuentra en el array.
+
+        // Se recupera la información guardada al cargar la página
+        window.onload = function(){
+            let datosGuardados = localStorage.getItem("misVideojuegos");
+            if(datosGuardados){
+                videojuegos = JSON.parse(datosGuardados);
+            }
+            mostrarLista(); // Mostramos por pantalla lo que se haya recuperado
+        };
+
+        // Se muestra la lista
+        function mostrarLista(){
+            let texto = "";
+
+            videojuegos.forEach((juego, index) => {
+                texto += `<p>
+                        <b>${juego.titulo}</b> - ${juego.genero} (${juego.anio})
+                        <button onclick="prepararEdicion(${index})">Editar</button>
+                        <button onclick="borrarElemento(${index})">Eliminar</button>
+                    </p>`;
+            });
+
+            if (videojuegos.length === 0){
+                texto = "<p>No hay videojuegos guardados todavía</p>";
+            }
+
+            document.getElementById("resultados").innerHTML = texto;
+        }
+
+        // Crear o Actualizar elemento
+        function guardarElemento(){
+            // Se recogen los valores del DOM
+            let tit = document.getElementById("inTitulo").value;
+            let gen = document.getElementById("inGenero").value;
+            let ani = document.getElementById("inAnio").value;
+
+            if(!tit || !gen || !ani){
+                alert("Por favor, rellena todos los campos");
+                return;
+            }
+
+            // Se crea el nuevo objeto
+            let nuevoJuego = {
+                titulo: tit,
+                genero: gen,
+                anio: ani
+            };
+
+            // Comprobamos si es para añadir un nuevo elemento o modificar uno existente
+            if(indiceEdicion === -1){ // Añadir elemento
+                videojuegos.push(nuevoJuego);
+            } else {
+                videojuegos[indiceEdicion] = nuevoJuego; // Se modifica el elemento cuya posición sea la del índice
+
+                // Devolvemos el valor a -1 para indicar que es edición
+                indiceEdicion = -1;
+                document.getElementById("btnGuardar").innerHTML = "Añadir videojuego";
+            }
+
+            actualizarMemoriaLocal();
+            limpiarFormulario();
+            mostrarLista();
+        }
+
+        // Para editar, cargamnos los datos en el formulario
+        function prepararEdicion(index){
+            document.getElementById("inTitulo").value = videojuegos[index].titulo;
+            document.getElementById("inGenero").value = videojuegos[index].genero;
+            document.getElementById("inAnio").value = videojuegos[index].anio;
+
+            // Le decimos el índice con el que estamos trabajando.
+            indiceEdicion = index;
+
+            // Cambiamos el texto del botón para que el usuario sepa que está modificando un elemento ya existente
+            document.getElementById("btnGuardar").innerHTML = "Guardar Cambios";
+        }
+
+        function borrarElemento(index){
+            if(confirm("Seguro que desea eliminar este juego??")){
+                videojuegos.splice(index, 1);
+                actualizarMemoriaLocal();
+                mostrarLista();
+            }
+        }
+
+        function actualizarMemoriaLocal(){
+            localStorage.setItem("misVideojuegos", JSON.stringify(videojuegos));
+        }
+
+        function limpiarFormulario(){
+            document.getElementById("inTitulo").value = "";
+            document.getElementById("inGenero").value = "";
+            document.getElementById("inAnio").value = "";
+        }
+    </script>
+</body>
+</html>
