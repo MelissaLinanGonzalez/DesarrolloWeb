@@ -1,0 +1,6 @@
+id,name,list_price,standard_price,detailed_type,available_in_pos
+prod_ia_06,Teclado Mecánico Inalámbrico RGB,120.00,75.00,product,True
+prod_ia_07,Suscripción Anual Adobe Creative Cloud,599.00,450.00,service,False
+prod_ia_08,Auriculares con Cancelación de Ruido,250.00,160.00,product,True
+prod_ia_09,Mantenimiento Preventivo de Equipos,80.00,0.00,service,False
+prod_ia_10,Impresora Multifunción Láser,320.00,210.00,product,True
