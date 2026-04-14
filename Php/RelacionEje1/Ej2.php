@@ -11,7 +11,15 @@ con los valores elegidos.-->
 </head>
 <body>
     <?php
-        $numAleatorio = 
+        $colores = ["red", "blue", "green"];
+
+        $colorFondo = $colores[array_rand($colores)];
+
+        echo "<style>
+            body {
+                background-color: $colorFondo;
+            }
+        </style>";
     ?>
 </body>
 </html>
