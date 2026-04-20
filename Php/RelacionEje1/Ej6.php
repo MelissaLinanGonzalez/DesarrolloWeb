@@ -9,7 +9,7 @@
 </head>
 <body>
     <?php
-        $radio = 20;
+        $radio = 5.12;
         $area = pi() * pow($radio, 2);
         echo "Radio de la circunferencia: " . $radio . "<br>";
         echo "Área de la circunferencia: " . $area;

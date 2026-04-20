@@ -11,13 +11,23 @@ con los valores elegidos.-->
 </head>
 <body>
     <?php
-        $colores = ["red", "blue", "green"];
+        //$colores = ["red", "blue", "green"];
 
-        $colorFondo = $colores[array_rand($colores)];
+        //$colorFondo = $colores[array_rand($colores)];
+
+        //echo "<style>
+        //    body {
+        //        background-color: $colorFondo;
+        //    }
+        //</style>";
+
+        $red=rand(0,255);
+        $blue=rand(0,255);
+        $green=rand(0,255);
 
         echo "<style>
             body {
-                background-color: $colorFondo;
+                background-color: rgb($red, $blue, $green);
             }
         </style>";
     ?>
